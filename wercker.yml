@@ -32,3 +32,30 @@ build:
         name: go test
         code: |
           go test ./...
+
+dev:
+  steps:
+    - wercker/setup-go-workspace:
+        package-dir: github.com/wercker/setup-go-workspacee
+
+    - script:
+        name: format check
+        code: |
+          go fmt
+        
+    - script:
+        name: go get
+        code: |
+          go get
+
+    # Build the project
+    - script:
+        name: go build
+        code: |
+          go build ./...
+
+    # Test the project
+    - script:
+        name: go test
+        code: |
+          go test ./...
